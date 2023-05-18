@@ -1,0 +1,26 @@
+﻿@model Atlanta.ViewModel.StaffViewModel
+
+@{
+    ViewBag.Title = Model.NameStaff ?? "EditStaff";
+}
+
+<form id="form-edit-room" asp-action="MyStaffEdit" asp-controller="Staff" method="post">
+    <label for="NameStaff">Название: @Model.NameStaff</label>
+    <input id="NameStaff" type="text" name="NameStaff" asp-for="NameStaff" class="input1" placeholder="NameStaff*"/>
+    <br/>
+    <label for="Location">Местоположение: @Model.Location</label>
+    <input id="Location" type="text" name="Location" asp-for="Location" class="input1" placeholder="Location*"/>
+    <br/>
+    <label for="Price">Цена: @Model.Price</label>
+    <input id="Price" type="number" name="Price" asp-for="Price" class="input1" placeholder="Price*"/>
+    <br/>
+    <label for="AmountPeople">Количество персонала: @Model.AmountPeople</label>
+    <input id="AmountPeople" type="number" name="AmountPeople" class="input1" asp-for="AmountPeople" placeholder="AmountPeople*"/>
+    <p>Организация активна: @Model.IsActive.ToString()</p>
+    <p>Тип организации: @Model.IdTypeStaff</p>
+    <input id="IdStaff" type="hidden" name="IdStaff" asp-for="IdStaff" class="input1"/>
+    <input id="IdTypeStaff" type="hidden" name="IdTypeStaff" asp-for="IdTypeStaff" class="input1"/>
+    <input id="IsActive" type="hidden" name="IsActive" asp-for="IsActive" class="input1"/>
+    <input id="IdUser" type="hidden" name="IdUser" asp-for="IdUser" class="input1"/>
+    <input type="submit" class="input-submit"/>
+</form>

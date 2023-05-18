@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Atlanta.Domain.Entity.Staff>
+
+@{
+    ViewBag.Title = "ViewStaff";
+}
+<style>
+    .content-box {
+        flex-direction: unset;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+</style>
+@foreach (var staff in Model)
+{
+    <div class="room-contain">
+        <p>Назва: @staff.NameStaff</p>
+        <p>Місцезнаходження: @staff.Location</p>
+        <p>Кількість кімнат:@staff.AmountPeople</p>
+        <p>Вартість: @staff.Price</p>
+        <p>ID персоналу: @staff.IdTypeStaff</p>
+        @if (staff.IsActive)
+        {
+            <form asp-action="StaffDeactivate" asp-controller="Admin" method="post">
+                <input type="hidden" name="idStaff" id="idStaff" value="@staff.IdStaff"/>
+                <button class="edit-del" style="margin-inline: 30%;">Деактивувати</button>
+            </form>
+        }
+        else
+        {
+            <form asp-action="StaffActivate" asp-controller="Admin" method="post">
+                <input type="hidden" name="idStaff" id="idStaff" value="@staff.IdStaff"/>
+                <button class="edit-del" style="margin-inline: 30%;">Активувати</button>
+            </form>
+        }
+    </div>
+}

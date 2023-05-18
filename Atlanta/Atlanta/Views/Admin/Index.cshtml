@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Atlanta.Domain.Entity.Users>
+
+@{
+    ViewBag.Title = "Admin Panel";
+}
+<link rel="stylesheet" href="~/css/adminpanel.css">
+
+<div class="list-user">
+    <ul>
+        @foreach (var user in Model)
+        {
+            @if (User.Identity.Name == user.Email)
+            {
+                continue;
+            }
+            <li>
+                <div class="user-contain">
+                    @user.Email
+                    <form class="formadmin" asp-action="Delete" asp-controller="Admin" method="get">
+                        <input type="hidden" name="user" value="@user.Email"/>
+                        <button class="edit-del">Видалити</button>
+                    </form>
+                    <form class="formadmin" asp-action="Edit" asp-controller="Admin" method="get">
+                        <input type="hidden" name="user" value="@user.Email"/>
+                        <button class="edit-del">Змінити</button>
+                    </form>
+
+                </div>
+            </li>
+        }
+    </ul>
+</div>

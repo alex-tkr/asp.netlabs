@@ -1,0 +1,31 @@
+﻿@using Microsoft.AspNetCore.Mvc.ModelBinding
+@model Atlanta.ViewModel.LoginViewModel
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div id="fill-sign-in" class="form">
+    <form class="form-box" asp-controller="Account" asp-action="Login" method="post">
+        <fieldset class="fieldset">
+            <div class="centered-signin">
+                <p>Вхід</p>
+            </div>
+            @Html.ValidationMessage("login")
+            <ul>
+                @foreach (var error in ViewData.ModelState.SelectMany(x => x.Value.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+            <br class="field-item">
+            <input asp-for="Email" type="text" style="margin-bottom:11px"
+                   placeholder="email" class="input1"/>
+            <br class="field-item"><input asp-for="Passwords" type="password" style="margin-bottom:11px" placeholder="Password" class="input1"/>
+            <a asp-action="Register" class="nav-item-link">Регістрація</a>
+            <div class="button-wrapper">
+                <br><button type="submit" class="button">Підтвердити</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

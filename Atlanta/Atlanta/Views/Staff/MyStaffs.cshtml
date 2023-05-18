@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Atlanta.Domain.Entity.Staff>
+
+@{
+    ViewBag.Title = "My Staff";
+}
+
+
+<div class="list-user">
+    <ul style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @foreach (var staff in Model)
+        {
+            <li>
+                <div class="room-contain">
+                    <p style="text-align: center">@staff.NameStaff -> Местоположение: @staff.Location</p>
+                    @if (@staff.IsWait)
+                    {
+                        <p style="text-align: center">(На Рассмотрении)</p>
+                    }
+                    @if (!@staff.IsActive)
+                    {
+                        <p style="text-align: center">(Деактивировано)</p>
+                    }
+                    <form class="form-room" asp-action="MyStaffById" asp-controller="Staff" method="get" style="margin-left: 25%;">
+                        <input id="idStaff" type="hidden" name="idStaff" value="@staff.IdStaff"/>
+                        <button class="edit-del">Переглянути</button>
+                    </form>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

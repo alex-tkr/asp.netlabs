@@ -1,0 +1,59 @@
+﻿@model Atlanta.ViewModel.SecondOrderViewModel
+
+@{
+    ViewBag.Title = "SearchForOrder";
+}
+<style>
+    input[type="radio"] {
+        width: 20px;
+        height: 20px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<form id="form-edit-room" asp-action="CreateOrder" asp-controller="Orders" method="post">
+    <div>
+        <div style="position: absolute;right: 0;">
+            <button class="edit-del" style="font-size: 15px;">Створими бронювання</button>
+        </div>
+        <p style="text-align: center">Приїд заплановано на @Model.DateOfEvent.ToShortDateString() ; На @Model.AmountPeople чоловік, в @Model.Location</p>
+        <p style="font-weight: bold; text-align: center">Доступні кімнати</p>
+    </div>
+    <br/>
+    <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+        @foreach (var room in Model.Rooms)
+        {
+            <div class="room-contain">
+
+                <p>Назва: @room.NameRoom</p>
+                <p>Місцезнаходження: @room.Location</p>
+                <p>Максимальна кількість людей:@room.MaxAmountPeople</p>
+                <p>Вартість: @room.Price</p>
+                <p>ID кімнати: @room.IdTypeRoom</p>
+
+                <input type="radio" id="CurrentRoom" name="CurrentRoom" value="@room.IdRoom">
+            </div>
+        }
+    </div>
+    <hr/>
+    <div>
+        <p style="font-weight: bold; text-align: center">Доступні готелі</p>
+    </div>
+    <div style="display: flex;flex-wrap: wrap;justify-content: center;">
+        @foreach (var staff in Model.Staffs)
+        {
+            <div class="room-contain">
+
+                <p>Назва: @staff.NameStaff</p>
+                <p>Місцезнаходження: @staff.Location</p>
+                <p>Кількість кімнат:@staff.AmountPeople</p>
+                <p>Вартість: @staff.Price</p>
+                <p>ID готелю: @staff.IdTypeStaff</p>
+
+                <input type="radio" id="CurrentStaff" name="CurrentStaff" value="@staff.IdStaff">
+            </div>
+        }
+    </div>
+    <input type="hidden" id="DateOfEvent" name="DateOfEvent" asp-for="DateOfEvent"/>
+</form>

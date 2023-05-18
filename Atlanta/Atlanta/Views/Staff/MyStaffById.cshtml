@@ -1,0 +1,17 @@
+﻿@model Atlanta.ViewModel.StaffViewModel
+
+@{
+    ViewBag.Title = Model.NameStaff;
+}
+
+<div class="room-contain">
+    <p>Название: @Model.NameStaff</p>
+    <p>Местоположение: @Model.Location</p>
+    <p>Количество персонала:@Model.AmountPeople</p>
+    <p>Цена: @Model.Price</p>
+    <p>Тип организации: @Model.IdTypeStaff</p>
+    <form asp-action="MyStaffEdit" asp-controller="Staff" method="get">
+        <input type="hidden" name="idStaff" id="idStaff" value="@Model.IdStaff"/>
+        <button class="edit-del" style="margin-inline: 30%;">Редактировать</button>
+    </form>
+</div>

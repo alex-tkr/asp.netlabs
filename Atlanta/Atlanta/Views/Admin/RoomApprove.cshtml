@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Atlanta.ViewModel.RoomViewModel>
+
+@{
+    ViewBag.Title = "Room Approve";
+}
+<style>
+    .content-box {
+        flex-direction: unset;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+</style>
+@foreach (var room in Model)
+{
+    <div class="room-contain">
+        <p>Назва: @room.NameRoom</p>
+        <p>Місцезнаходження: @room.Location</p>
+        <p>Максимала кількість людей:@room.MaxAmountPeople</p>
+        <p>Вартість: @room.Price</p>
+        <p>Тип кімнати: @room.IdTypeRoom</p>
+        <form asp-action="RoomApprove" asp-controller="Admin" method="post">
+            <input type="hidden" name="idRoom" id="idRoom" value="@room.IdRoom"/>
+            <button class="edit-del" style="margin-inline: 30%;">Підтвердити</button>
+        </form>
+    </div>
+}

@@ -1,0 +1,17 @@
+﻿@model Atlanta.ViewModel.RoomViewModel
+
+@{
+    ViewBag.Title = Model.NameRoom;
+}
+
+<div class="room-contain">
+    <p>Номер кімнати: @Model.NameRoom</p>
+    <p>Місцезнаходження: @Model.Location</p>
+    <p>Максимальна кількість людей:@Model.MaxAmountPeople</p>
+    <p>Вартість: @Model.Price</p>
+    <p>Тип кімнати: @Model.IdTypeRoom</p>
+    <form asp-action="MyRoomEdit" asp-controller="Room" method="get">
+        <input type="hidden" name="idRoom" id="idRoom" value="@Model.IdRoom"/>
+        <button class="edit-del" style="margin-inline: 30%;">Редагувати</button>
+    </form>
+</div>

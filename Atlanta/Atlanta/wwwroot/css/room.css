@@ -1,0 +1,20 @@
+﻿.room-contain {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #e1e2e4;
+    box-shadow: 0px 0px 10px grey;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+}
+.room-contain p {
+    text-align: center;
+    margin: 4px;
+}
+
+.formroom {
+    margin-left: 25%;
+}

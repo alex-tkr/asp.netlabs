@@ -1,0 +1,36 @@
+﻿@model Atlanta.ViewModel.StaffRoomViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<div>
+    <p style="font-weight: bold; text-align: center">Доступні номери</p>
+</div>
+<div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    @foreach (var room in Model.Rooms)
+    {
+        <div class="room-contain">
+                <img class="hotel-image" src="./img/image1.jpg" alt="hotel photo" />
+            <p>Назва: @room.NameRoom</p>
+            <p>Місцезнаходження: @room.Location</p>
+            <p>Максимальна кількість людей:@room.MaxAmountPeople</p>
+            <p>Вартість: @room.Price</p>
+            <p>Тип номеру: @room.IdTypeRoom</p>
+        </div>
+    }
+</div>
+<hr style="color: black;width: 100%;height: 1px;"/>
+<div>
+    <p style="font-weight: bold; text-align: center">Доступні готелі</p>
+</div>
+<div style="display: flex;flex-wrap: wrap;justify-content: center;">
+    @foreach (var staff in Model.Staffs)
+    {
+        <div class="room-contain">
+            <p>Назва: @staff.NameStaff</p>
+            <p>Місцезнаходження: @staff.Location</p>
+            <p>Кількість кімнат:@staff.AmountPeople</p>
+            <p>Вартість: @staff.Price</p>
+            <p>Тип готелю: @staff.IdTypeStaff</p>
+        </div>
+    }
+</div>

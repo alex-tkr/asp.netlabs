@@ -1,0 +1,39 @@
+﻿@model Atlanta.Domain.Entity.Users
+@{
+    ViewBag.Title = "My Profile";
+}
+<link rel="stylesheet" href="~/css/adminpanel.css">
+
+<form id="form-edit-user" asp-action="Index" asp-controller="Profile" method="post">
+    @if (@Model.Name is "" or null)
+    {
+        <label for="Name">Ім'я: Не вказано</label>
+    }
+    else
+    {
+        <label for="Name">Ім'я: @Model.Name</label>
+    }
+    <input id="Name" type="text" name="Name" asp-for="Name" class="input1"/>
+    <br/>
+    <label for="Age">Вік: @Model.Age</label>
+    <input id="Age" type="number" name="Age" asp-for="Age" class="input1"/>
+    <br/>
+    @if (@Model.Phone == 0)
+    {
+        <label for="Phone">Номер телефону: Не вказано</label>
+    }
+    else
+    {
+        <label for="Phone">Номер телефону: @Model.Phone</label>
+    }
+    <input id="Phone" type="number" name="Phone" class="input1"/>
+    <p>Акаунт активний: @Model.IsActive.ToString()</p>
+    <p>Поточна роль: @Model.IdRole.ToString()</p>
+    <label for="Passwords">Пароль:</label>
+    <input id="Passwords" type="password" name="Passwords" asp-for="Passwords" class="input1"/>
+    <input id="IdUser" type="hidden" name="IdUser" asp-for="IdUser" class="input1"/>
+    <input id="Email" type="hidden" name="Email" asp-for="Email" class="input1"/>
+    <input id="IdRole" type="hidden" name="IdRole" asp-for="IdRole" class="input1"/>
+    <input id="IsActive" type="hidden" name="IsActive" asp-for="IsActive" class="input1"/>
+    <input type="submit" class="input-submit"/>
+</form>

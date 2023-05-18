@@ -1,0 +1,38 @@
+﻿@using Atlanta.Domain.Enums
+@model IEnumerable<Atlanta.ViewModel.OrderForUser>
+
+@{
+    ViewBag.Title = "Мої бронювання";
+}
+<style>
+    .form-room {
+        display: flex;
+        justify-content: center;
+        margin-block: 10px;
+    }
+</style>
+<div class="list-user">
+    <ul style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @foreach (var order in Model)
+        {
+            <li>
+                <div class="room-contain">
+                    <p style="text-align: center">Email користувача: @order.NameUser</p>
+                    <p style="text-align: center">Номер кімнати: @order.RoomView</p>
+                    <p style="text-align: center">Назва готелю: @order.StaffView</p>
+                    <p style="text-align: center">Повна вартість: @order.AllPrice</p>
+                    <p style="text-align: center">Статус бронювання: @order.IdStatusOrder.ToString()</p>
+                    @if (order.IsWait)
+                    {
+                        <p style="text-align: center">Розглянуто менеджером: Нет</p>
+                    }
+                    else
+                    {
+                        <p style="text-align: center">Розглянуто менеджером: Да</p>
+                    }
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>

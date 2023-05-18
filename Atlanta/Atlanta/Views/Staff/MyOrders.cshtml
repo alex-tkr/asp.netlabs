@@ -1,0 +1,42 @@
+﻿@using Atlanta.Domain.Enums
+@model IEnumerable<Atlanta.ViewModel.OrderForUser>
+
+@{
+    ViewBag.Title = "MyOrders";
+}
+<style>
+    .form-room {
+        display: flex;
+        justify-content: center;
+        margin-block: 10px;
+    }
+</style>
+<div class="list-user">
+    <ul style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @foreach (var order in Model)
+        {
+            <li>
+                <div class="room-contain">
+                    <p style="text-align: center">Email заказчика: @order.NameUser</p>
+                    <p style="text-align: center">Название помещения: @order.RoomView</p>
+                    <p style="text-align: center">Название персонала: @order.StaffView</p>
+                    <p style="text-align: center">Полная цена: @order.AllPrice</p>
+                    <p style="text-align: center">Статус заказа: @order.IdStatusOrder.ToString()</p>
+                    @if (order.IdStatusOrder is StatusOrder.NoRoom_ReviewStaff or StatusOrder.ReviewRoom_ReviewStaff or StatusOrder.YesRoom_ReviewStaff)
+                    {
+                        <form class="form-room" asp-action="ApproveOrder" asp-controller="Staff" method="post">
+                            <input id="idOrder" type="hidden" name="idOrder" value="@order.IdOrder"/>
+                            <button class="edit-del">Подтвердить заказ</button>
+                        </form>
+                        <form class="form-room" asp-action="UnapproveOrder" asp-controller="Staff" method="post">
+                            <input id="idOrder" type="hidden" name="idOrder" value="@order.IdOrder"/>
+                            <button class="edit-del">Отклонить заказ</button>
+                        </form>
+                    }
+                    
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>

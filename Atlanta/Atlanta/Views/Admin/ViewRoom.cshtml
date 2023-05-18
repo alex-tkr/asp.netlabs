@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Atlanta.Domain.Entity.Room>
+@{
+    ViewBag.Title = "ViewRoom";
+}
+
+<style>
+    .content-box {
+        flex-direction: unset;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+</style>
+@foreach (var room in Model)
+{
+    <div class="room-contain">
+        <p>Номер кімнати: @room.NameRoom</p>
+        <p>Місцезнаходження: @room.Location</p>
+        <p>Максимальна кількість людей:@room.MaxAmountPeople</p>
+        <p>Вартість: @room.Price</p>
+        <p>ID кімнати: @room.IdTypeRoom</p>
+        @if (room.IsActive)
+        {
+            <form asp-action="RoomDeactivate" asp-controller="Admin" method="post">
+                <input type="hidden" name="idRoom" id="idRoom" value="@room.IdRoom"/>
+                <button class="edit-del" style="margin-inline: 30%;">Деактивувати</button>
+            </form>
+        }
+        else
+        {
+            <form asp-action="RoomActivate" asp-controller="Admin" method="post">
+                <input type="hidden" name="idRoom" id="idRoom" value="@room.IdRoom"/>
+                <button class="edit-del" style="margin-inline: 30%;">Активувати</button>
+            </form>
+        }
+    </div>
+}

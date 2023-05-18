@@ -1,0 +1,32 @@
+﻿@model Atlanta.ViewModel.StaffViewModel
+
+@{
+    ViewBag.Title = "Add Staff";
+}
+
+<link rel="stylesheet" href="~/css/adminpanel.css">
+<ul>
+    @foreach (var error in ViewData.ModelState.SelectMany(x => x.Value.Errors))
+    {
+        <li>@error.ErrorMessage</li>
+    }
+</ul>
+<form id="form-edit-user" asp-action="AddStaff" asp-controller="Staff" method="post">
+
+    <label for="NameStaff">Название Организации: </label>
+    <input id="NameStaff" type="text" name="NameStaff" asp-for="NameStaff" class="input1" placeholder="Name Staff*"/>
+    <br/>
+    <label for="AmountPeople">Количество персонала:</label>
+    <input id="AmountPeople" type="number" name="AmountPeople" asp-for="AmountPeople" class="input1" placeholder="Amount People*"/>
+    <br/>
+    <label for="Price">Цена:</label>
+    <input id="Price" type="number" name="Price" asp-for="Price" class="input1" placeholder="Price*"/>
+    <br/>
+    <label for="Location">Местонахождение:</label>
+    <input id="Location" type="text" name="Location" asp-for="Location" class="input1" placeholder="Location*"/>
+    <br/>
+    <label for="IdTypeStaff">Тип организации:</label>
+    <input id="IdTypeStaff" type="text" name="IdTypeStaff" class="input1" asp-for="IdTypeStaff" placeholder="TypeStaff*"/>
+    <br/>
+    <input type="submit" class="input-submit"/>
+</form>

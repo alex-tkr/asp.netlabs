@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/css/style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Comfortaa">
+    <link rel="stylesheet" href="~/css/adminpanel.css">
+    <link rel="stylesheet" href="~/css/room.css">
+</head>
+
+<body>
+<div class="container">
+    <header>
+        <div class="nav">
+            <nav class="main-nav">
+                <div class="nav-left">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <style>
+                            .punks {
+                                border: 1px solid gray;
+                                border-radius: 3px;
+                                font-size:14px;
+                            }
+                        </style>
+                        <ul class="menu" style="z-index: 999;">
+                            <li>
+                                <a href="#" class="nav-item-link">Профіль</a>
+                                <ul>
+                                    <li>
+                                        <a asp-action="Index" asp-controller="Profile" class="punks">Мій профіль</a>
+                                    </li>
+                                    
+                                    @if (User.IsInRole("User"))
+                                    {
+                                        <li>
+                                            <a asp-controller="Orders" asp-action="MyOrders" class="punks">Мої бронювання</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Orders" asp-action="NewOrder" class="punks">Оформити бронювання</a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("RoomMan"))
+                                    {
+                                        <li>
+                                            <a asp-action="AddRoom" asp-controller="Room" class="punks">Додати кімнату</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="MyRooms" asp-controller="Room" class="punks">Мої кімнати</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="MyOrders" asp-controller="Room" class="punks">Бронювання</a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("StaffMan"))
+                                    {
+                                        <li>
+                                            <a asp-controller="Staff" asp-action="AddStaff" class="punks">Додати готель</a>
+                                        </li>
+                                        <li>
+                                            <a asp-controller="Staff" asp-action="MyStaffs" class="punks">Мої готелі</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="MyOrders" asp-controller="Staff" class="punks">Бронювання</a>
+                                        </li>
+                                    }
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <li>
+                                            <a asp-action="Index" asp-controller="Admin" class="punks">Зміна ролей користувачів</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="RoomApprove" asp-controller="Admin" class="punks">Підтверждення кімнат</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="ViewRoom" asp-controller="Admin" class="punks">Перегляд кімнат</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="StaffApprove" asp-controller="Admin" class="punks">Підтвердження готелів</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="ViewStaff" asp-controller="Admin" class="punks">Перегляд готелів</a>
+                                        </li>
+                                        <li>
+                                            <a asp-action="OrdersUser" asp-controller="Admin" class="punks">Бронювання</a>
+                                        </li>
+                                    }
+                                        <li>
+                                            <a asp-action="Logout" asp-controller="Account" class="punks">Вихід</a>
+                                        </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    }
+
+                </div>
+                <div class="nav-centered" style="margin-right: 0px">
+                    <a asp-action="Index" asp-controller="Home" class="active">Atlanta Events</a>
+                </div>
+                <div class="nav-right">
+                    @if (!User.Identity.IsAuthenticated)
+                    {
+                        <a asp-action="Login" asp-controller="Account" class="nav-item-link">Вхід</a>
+                    }
+                </div>
+            </nav>
+        </div>
+    </header>
+    <div class="content-box">
+        @RenderBody()
+    </div>
+</div>
+</body>
+</html>

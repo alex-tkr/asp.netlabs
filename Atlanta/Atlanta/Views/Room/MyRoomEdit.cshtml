@@ -1,0 +1,26 @@
+﻿@model Atlanta.ViewModel.RoomViewModel
+
+@{
+    ViewBag.Title = Model.NameRoom ?? "MyRoomEdit";
+}
+
+<form id="form-edit-room" asp-action="MyRoomEdit" asp-controller="Room" method="post">
+    <label for="NameRoom">Номер кімнати: @Model.NameRoom</label>
+    <input id="NameRoom" type="text" name="NameRoom" asp-for="NameRoom" class="input1" placeholder="NameRoom*"/>
+    <br/>
+    <label for="Location">Місцезнаходження: @Model.Location</label>
+    <input id="Location" type="text" name="Location" asp-for="Location" class="input1" placeholder="Location*"/>
+    <br/>
+    <label for="Price">Вартість: @Model.Price</label>
+    <input id="Price" type="number" name="Price" asp-for="Price" class="input1" placeholder="Price*"/>
+        <br/>
+    <label for="MaxAmountPeople">Максимальна кількість людей: @Model.MaxAmountPeople</label>
+    <input id="MaxAmountPeople" type="number" name="MaxAmountPeople" class="input1" asp-for="MaxAmountPeople" placeholder="MaxAmountPeople*"/>
+    <p>Кімната активна: @Model.IsActive.ToString()</p>
+    <p>Тип кімнати: @Model.IdTypeRoom</p>
+    <input id="IdRoom" type="hidden" name="IdRoom" asp-for="IdRoom" class="input1"/>
+    <input id="IdTypeRoom" type="hidden" name="IdTypeRoom" asp-for="IdTypeRoom" class="input1"/>
+    <input id="IsActive" type="hidden" name="IsActive" asp-for="IsActive" class="input1"/>
+    <input id="IdUser" type="hidden" name="IdUser" asp-for="IdUser" class="input1"/>
+    <input type="submit" class="input-submit"/>
+</form>

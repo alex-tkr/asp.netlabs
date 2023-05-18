@@ -1,0 +1,29 @@
+﻿@model Atlanta.ViewModel.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<div id="fill-sign-in" class="form">
+    <form class="form-box" asp-controller="Account" asp-action="Register" method="post">
+        <fieldset class="fieldset-register">
+            <div class="centered-signin">
+                <p>Регістрація</p>
+            </div>
+            @Html.ValidationMessage("register")
+            <ul>
+                @foreach (var error in ViewData.ModelState.SelectMany(x => x.Value.Errors))
+                {
+                    <li>@error.ErrorMessage</li>
+                }
+            </ul>
+            <br class="field-item">
+            <input asp-for="Email" type="text" style="margin-bottom:11px"
+                   placeholder="Email" class="input1"/>
+            <br class="field-item"><input asp-for="Password" type="password" style="margin-bottom:11px" placeholder="Пароль" class="input1"/>
+            <br class="field-item"><input asp-for="ConfirmedPassword" type="password" style="margin-bottom:11px" placeholder="Підтвердіть пароль" class="input1"/>
+            <div class="button-wrapper">
+                <br><button type="submit" class="button">Підтвердити</button>
+            </div>
+        </fieldset>
+    </form>
+</div>

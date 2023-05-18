@@ -1,0 +1,26 @@
+﻿@model IEnumerable<Atlanta.ViewModel.StaffViewModel>
+
+@{
+    ViewBag.Title = "Staff Approve";
+}
+<style>
+    .content-box {
+        flex-direction: unset;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+</style>
+@foreach (var staff in Model)
+{
+    <div class="room-contain">
+        <p>Назва готелю: @staff.NameStaff</p>
+        <p>Місцезнаходження: @staff.Location</p>
+        <p>Кількість кімнат:@staff.AmountPeople</p>
+        <p>Вартість: @staff.Price</p>
+        <p>Тип готелю: @staff.IdTypeStaff</p>
+        <form asp-action="StaffApprove" asp-controller="Admin" method="post">
+            <input type="hidden" name="idStaff" id="idStaff" value="@staff.IdStaff"/>
+            <button class="edit-del" style="margin-inline: 30%;">Підтвердити</button>
+        </form>
+    </div>
+}

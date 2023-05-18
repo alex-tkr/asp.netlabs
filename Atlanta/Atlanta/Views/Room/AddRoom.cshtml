@@ -1,0 +1,33 @@
+﻿@model Atlanta.ViewModel.RoomViewModel
+
+@{
+    ViewBag.Title = "AddRoom";
+
+}
+
+<link rel="stylesheet" href="~/css/adminpanel.css">
+<ul>
+    @foreach (var error in ViewData.ModelState.SelectMany(x => x.Value.Errors))
+    {
+        <li>@error.ErrorMessage</li>
+    }
+</ul>
+<form id="form-edit-user" asp-action="AddRoom" asp-controller="Room" method="post">
+
+    <label for="NameRoom">Номер кімнати: </label>
+    <input id="NameRoom" type="text" name="NameRoom" asp-for="NameRoom" class="input1" placeholder="Name Room*"/>
+    <br/>
+    <label for="MaxAmountPeople">Максимальна кількість людей:</label>
+    <input id="MaxAmountPeople" type="number" name="MaxAmountPeople" asp-for="MaxAmountPeople" class="input1" placeholder="Max Amount People*"/>
+    <br/>
+    <label for="Price">Вартість:</label>
+    <input id="Price" type="number" name="Price" asp-for="Price" class="input1" placeholder="Price*"/>
+    <br/>
+    <label for="Location">Місцезнаходження:</label>
+    <input id="Location" type="text" name="Location" asp-for="Location" class="input1" placeholder="Location*"/>
+    <br/>
+    <label for="IdTypeRoom">Тип кімнати:</label>
+    <input id="IdTypeRoom" type="text" name="IdTypeRoom" class="input1" placeholder="TypeRoom*"/>
+    <br/>
+    <input type="submit" class="input-submit"/>
+</form>

@@ -1,0 +1,42 @@
+﻿@using Atlanta.Domain.Enums
+@model IEnumerable<Atlanta.ViewModel.OrderForUser>
+
+@{
+    ViewBag.Title = "MyOrders";
+}
+<style>
+    .form-room {
+        display: flex;
+        justify-content: center;
+        margin-block: 10px;
+    }
+</style>
+<div class="list-user">
+    <ul style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @foreach (var order in Model)
+        {
+            <li>
+                <div class="room-contain">
+                    <p style="text-align: center">Email користувача: @order.NameUser</p>
+                    <p style="text-align: center">Номер кімнати: @order.RoomView</p>
+                    <p style="text-align: center">Назва готелю: @order.StaffView</p>
+                    <p style="text-align: center">Повна вартість: @order.AllPrice</p>
+                    <p style="text-align: center">Статус бронювання: @order.IdStatusOrder.ToString()</p>
+                    @if (order.IdStatusOrder is StatusOrder.ReviewRoom_NoStaff or StatusOrder.ReviewRoom_ReviewStaff or StatusOrder.ReviewRoom_YesStaff)
+                    {
+                        <form class="form-room" asp-action="ApproveOrder" asp-controller="Room" method="post">
+                            <input id="idOrder" type="hidden" name="idOrder" value="@order.IdOrder"/>
+                            <button class="edit-del">Підтвердити бронювання</button>
+                        </form>
+                        <form class="form-room" asp-action="UnapproveOrder" asp-controller="Room" method="post">
+                            <input id="idOrder" type="hidden" name="idOrder" value="@order.IdOrder"/>
+                            <button class="edit-del">Відхилити бронювання</button>
+                        </form>
+                    }
+                    
+                </div>
+            </li>
+        }
+    </ul>
+
+</div>

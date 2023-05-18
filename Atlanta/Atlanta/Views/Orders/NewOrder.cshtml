@@ -1,0 +1,41 @@
+﻿@model Atlanta.ViewModel.OrderSearchViewModel
+
+@{
+    ViewBag.Title = "NewOrder";
+}
+
+<form id="form-edit-room" asp-action="SearchForOrder" asp-controller="Orders" method="get">
+    <label for="LocationValue">Оберіть місце:</label>
+    <br/>
+    <select id="LocationValue" type="number" name="LocationValue" asp-for="LocationValue" form="form-edit-room" class="input1">
+        @foreach (var item in Model.Location)
+        {
+            <option value="@item">@item</option>
+        }
+    </select>
+    <label for="DateOfEvent">Оберіть дату приїзду:</label>
+    <input type="date" min="@DateTime.Today" placeholder="DateOfEvent*" name="DateOfEvent" id="DateOfEvent" class="input1">
+
+    <br/>
+    <label for="MaxAmountPeople">Кількість гостей:</label>
+    <br/>
+    <input type="text" placeholder="MaxAmountPeople*" name="MaxAmountPeople" id="MaxAmountPeople"  class="input1">
+    <br/>
+    <label for="TypeRoomValue">Оберіть тип кімнати:</label>
+    <br/>
+    <select id="TypeRoomValue" type="number" name="TypeRoomValue"  form="form-edit-room" class="input1">
+        @foreach (var item in Model.TypeRoom)
+        {
+            <option value="@item.Key">@item.Value</option>
+        }
+    </select>
+    <label for="TypeStaffValue">Оберіть тип готелю:</label>
+    <br/>
+    <select id="TypeStaffValue" type="number" name="TypeStaffValue"  form="form-edit-room" class="input1">
+        @foreach (var item in Model.TypeStaff)
+        {
+            <option value="@item.Key">@item.Value</option>
+        }
+    </select>
+    <input type="submit" class="input-submit"/>
+</form>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Atlanta.Domain.Entity.Room>
+
+@{
+    ViewBag.Title = "MyRooms";
+}
+
+
+<div class="list-user">
+    <ul style="display: flex; flex-wrap: wrap; justify-content: center;">
+        @foreach (var room in Model)
+        {
+            <li>
+                <div class="room-contain">
+                    <p style="text-align: center">@room.NameRoom -> Місцезнаходження: @room.Location</p>
+                    @if (@room.IsWait)
+                    {
+                        <p style="text-align: center">(На Перегляді)</p>
+                    }
+                    @if (!@room.IsActive)
+                    {
+                        <p style="text-align: center">(Деактивовано)</p>
+                    }
+                    <form class="form-room" asp-action="MyRoomById" asp-controller="Room" method="get" style="margin-left: 25%;">
+                        <input id="room1" type="hidden" name="room1" value="@room.IdRoom"/>
+                        <button class="edit-del">Переглянути</button>
+                    </form>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
